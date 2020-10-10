@@ -19,6 +19,7 @@
           break;
       }
     };
+
     let playRound = (playerSelection, computerSelection) => {
       ps = playerSelection.toLowerCase();
       cs = computerSelection.toLowerCase();
@@ -39,9 +40,11 @@
         return 'This is a tie';
       }
     };
+
     let game = () => {
       for (let i = 0; i < 5; ++i) {
         ps = prompt(`Select rock, paper, or scissor (round ${i + 1}): `);
+
         cs = computerPlay();
         console.log(playRound(ps, cs));
       }

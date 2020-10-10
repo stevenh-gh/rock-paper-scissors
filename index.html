@@ -1,9 +1,52 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
-        <script>
-            
-        </script>
-    </body>
+
+<head></head>
+
+<body>
+	<script>
+		let computerPlay = () => {
+			rand = Math.floor(Math.random() * 3) + 1; // random num from 1 to 3
+			switch (rand) {
+				case 1:
+					return 'rock';
+					break;
+				case 2:
+					return 'paper';
+					break;
+				case 3:
+					return 'scissor';
+					break;
+			}
+		};
+		let playRound = (playerSelection, computerSelection) => {
+			ps = playerSelection.toLowerCase();
+			cs = computerSelection.toLowerCase();
+
+			if (
+				(ps === 'rock' && cs === 'scissor') ||
+				(ps === 'paper' && cs === 'rock') ||
+				(ps == 'scissor' && cs === 'paper')
+
+			) {
+				return `You win! ${ps} beats ${cs}`;
+			} else if (
+				(cs === 'rock' && ps === 'scissor') ||
+				(cs === 'paper' && ps === 'rock') ||
+				(cs == 'scissor' && ps === 'paper')) {
+				return `You lose! ${cs} beats ${ps}`;
+			} else {
+				return 'This is a tie';
+			}
+		};
+		let game = () => {
+			for (let i = 0; i < 5; ++i) {
+				ps = prompt('Select rock, paper, or scissor: ');
+				cs = computerSelection();
+				playrRound(ps, cs);
+			}
+		};
+	</script>
+</body>
+
 </html>

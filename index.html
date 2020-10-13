@@ -47,14 +47,7 @@
     };
 
     let game = ps => {
-      //   for (let i = 0; i < 5; ++i) {
-      //     ps = prompt(`Select rock, paper, or scissor (round ${i + 1}): `);
-
-      //     cs = computerPlay();
-      //     console.log(playRound(ps, cs));
-      //   }
       cs = computerPlay();
-      // console.log(playRound(ps, cs));
       let strResults = (playRound(ps, cs));
 
       const main = document.querySelector('main');
@@ -69,7 +62,6 @@
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
       button.addEventListener('click', e => {
-        // console.log(e.target.id);
         game(e.target.id);
       })
     })

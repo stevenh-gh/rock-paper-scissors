@@ -4,9 +4,11 @@
 <head></head>
 
 <body>
-  <button>rock</button>
-  <button>paper</button>
-  <button>scissor</button>
+  <main>
+    <button id="rock">rock</button>
+    <button id="paper">paper</button>
+    <button id="scissor">scissor</button>
+  </main>
 
 
   <script>
@@ -44,7 +46,7 @@
       }
     };
 
-    let game = () => {
+    let game = ps => {
       //   for (let i = 0; i < 5; ++i) {
       //     ps = prompt(`Select rock, paper, or scissor (round ${i + 1}): `);
 
@@ -52,8 +54,25 @@
       //     console.log(playRound(ps, cs));
       //   }
       cs = computerPlay();
-      console.log(playRound(ps, cs));
+      // console.log(playRound(ps, cs));
+      let strResults = (playRound(ps, cs));
+
+      const main = document.querySelector('main');
+      const resultsDiv = document.createElement('div');
+      const results = document.createElement('p');
+
+      results.textContent = strResults;
+      resultsDiv.appendChild(results);
+      main.appendChild(resultsDiv);
     };
+
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.addEventListener('click', e => {
+        // console.log(e.target.id);
+        game(e.target.id);
+      })
+    })
   </script>
 </body>
 

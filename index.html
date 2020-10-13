@@ -4,6 +4,11 @@
 <head></head>
 
 <body>
+  <button>rock</button>
+  <button>paper</button>
+  <button>scissor</button>
+
+
   <script>
     let computerPlay = () => {
       rand = Math.floor(Math.random() * 3) + 1; // random num from 1 to 3
@@ -39,14 +44,16 @@
       }
     };
 
-    // let game = () => {
-    //   for (let i = 0; i < 5; ++i) {
-    //     ps = prompt(`Select rock, paper, or scissor (round ${i + 1}): `);
+    let game = () => {
+      //   for (let i = 0; i < 5; ++i) {
+      //     ps = prompt(`Select rock, paper, or scissor (round ${i + 1}): `);
 
-    //     cs = computerPlay();
-    //     console.log(playRound(ps, cs));
-    //   }
-    // };
+      //     cs = computerPlay();
+      //     console.log(playRound(ps, cs));
+      //   }
+      cs = computerPlay();
+      console.log(playRound(ps, cs));
+    };
   </script>
 </body>
 

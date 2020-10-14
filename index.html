@@ -12,6 +12,22 @@
 
 
   <script>
+    const main = document.querySelector('main');
+    const resultsDiv = document.createElement('div');
+    const announce = document.createElement('p');
+
+    let pScore = 0;
+    let cScore = 0;
+    let announcement = '';
+
+    resultsDiv.textContent = `Player score: ${pScore}\nComputer score: ${cScore}`;
+    announce.textContent = announcement;
+
+    // vvvv announce does not show up in browswer when inside div
+    // resultsDiv.appendChild(announce);
+    main.appendChild(resultsDiv);
+    main.appendChild(announce);
+
     let computerPlay = () => {
       rand = Math.floor(Math.random() * 3) + 1; // random num from 1 to 3
       switch (rand) {
@@ -35,36 +51,62 @@
         (ps === 'rock' && cs === 'scissor') ||
         (ps === 'paper' && cs === 'rock') ||
         (ps == 'scissor' && cs === 'paper')) {
-        return `You win! ${ps} beats ${cs}`;
+        return ['player', `You win! ${ps} beats ${cs}`];
       } else if (
         (cs === 'rock' && ps === 'scissor') ||
         (cs === 'paper' && ps === 'rock') ||
         (cs == 'scissor' && ps === 'paper')) {
-        return `You lose! ${cs} beats ${ps}`;
+        return ['computer', `You lose! ${cs} beats ${ps}`];
       } else {
-        return 'This is a tie';
+        return ['both', 'This is a tie'];
       }
     };
 
+    let update = () => {
+      console.log(announce);
+      console.log(announcement);
+
+      resultsDiv.textContent = `Player score: ${pScore}\nComputer score: ${cScore}`;
+      announce.textContent = announcement;
+    }
+
     let game = ps => {
       cs = computerPlay();
-      let strResults = (playRound(ps, cs));
+      let results = (playRound(ps, cs));
 
-      const main = document.querySelector('main');
-      const resultsDiv = document.createElement('div');
-      const results = document.createElement('p');
-
-      results.textContent = strResults;
-      resultsDiv.appendChild(results);
-      main.appendChild(resultsDiv);
+      announcement = results[1];
+      if (results[0] === 'player') {
+        ++pScore;
+      } else if (results[0] === 'computer') {
+        ++cScore;
+      }
+      update();
     };
+
+    let count = 0;
+    let winnerAnnounce = document.createElement('p');
+    // winnerAnnounce.classList.add('winner-announcement');
+    // winnerAnnounce.textContent = '';
+    main.appendChild(winnerAnnounce);
 
     const buttons = document.querySelectorAll('button');
     buttons.forEach(button => {
       button.addEventListener('click', e => {
         game(e.target.id);
+        ++count;
+        console.log(count);
+        if (count === 5) {
+          count = 0;
+          pScore = 0;
+          cScore = 0;
+          let winner;
+          if (pScore > cScore) { winner = 'Player'; }
+          else if (cScore > pScore) { winner = 'Computer' }
+          else { winner = 'tie' }
+          winnerAnnounce.textContent = winner !== 'tie' ? `${winner} wins!` : `This match is a ${winner}.`;
+        }
       })
-    })
+    });
   </script>
 </body>
 
